@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="Cart.css">
+</head>
+<body>
+    <div class="cart-container">
+        <header class="cart-header">
+            Cart Items
+        </header>
+        <input type="text" id="search-bar" placeholder="Search for products..." class="search-bar">
+        <table class="product-table">
+            <thead class="product-table-header">
+                <tr>
+                    <th class="header-item">Product</th>
+                    <th class="header-item">Availability</th>
+                    <th class="header-item">Unit Price</th>
+                    <th class="header-item">Quantity</th>
+                    <th class="header-item">Total</th>
+                    <th class="header-item">Action</th>
+                </tr>
+            </thead>
+            <tbody id="product-list"></tbody>
+        </table>
+        <div class="grand-total">
+            <span>Total:</span>
+            <span id="grand-total">$0.00</span>
+        </div>
+    </div>
+    <script src="cart.js"></script>
+</body>
+</html>
