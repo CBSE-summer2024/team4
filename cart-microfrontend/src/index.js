@@ -1,15 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Cart from './components/Cart';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-class App extends React.Component {
-  render() {
-    return <Cart />;
-  }
-}
-const PUBLIC_URL = process.env.PUBLIC_URL || '';
-
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-window.CartComponent = Cart;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+س

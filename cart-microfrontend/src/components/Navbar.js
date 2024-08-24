@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navbar.css';
-import logo from 'C:/Users/yazeed/cart-microfrontend/src/assets/images/logo.jpg'; // Adjusted path
+import logo from 'C:/Users/yazeed/cart-microfrontend/src/assets/images/logo.jpg';
 
 const Navbar = () => {
   return (

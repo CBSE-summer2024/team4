@@ -1,7 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Updated import
-import App from './App';
+import Cart from './components/Cart';
+import Navbar from './components/Navbar';
 
-const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot(rootElement);
-root.render(<App />);
+function App() {
+  return (
+    <div className="App">
+      <Navbar />
+      <Cart />
+    </div>
+  );
+}
+
+export default App;

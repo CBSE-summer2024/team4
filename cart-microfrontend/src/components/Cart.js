@@ -1,120 +1,118 @@
-class CartComponent extends HTMLElement {
-  constructor() {
-      super();
-      this.attachShadow({ mode: 'open' });
+import React, { useState } from 'react';
+import './cart.css'; 
 
-      // Initialize state
-      this.products = [
-          { id: 1, name: 'Men Sport Shoe MO F50', price: 22.00, quantity: 1, available: true },
-          { id: 2, name: 'حذاء كاجيوال سبورت للشباب', price: 33.00, quantity: 1, available: true },
-          { id: 3, name: 'سماعة أذن ويرليس Kebido', price: 20.99, quantity: 1, available: true },
-      ];
-      this.searchTerm = '';
+const Cart = () => {
+  const initialItems = [
+    { id: 1, name: 'Apple', price: 1.20, quantity: 3 },
+    { id: 2, name: 'Banana', price: 0.50, quantity: 5 },
+    { id: 3, name: 'Orange', price: 0.80, quantity: 2 },
+    { id: 4, name: 'Milk', price: 2.50, quantity: 1 },
+    { id: 5, name: 'Bread', price: 1.00, quantity: 2 },
+    { id: 6, name: 'Cheese', price: 3.00, quantity: 1 },
+    { id: 7, name: 'Eggs', price: 2.00, quantity: 12 },
+    { id: 8, name: 'Chicken Breast', price: 5.00, quantity: 1 },
+    { id: 9, name: 'Rice', price: 1.75, quantity: 4 },
+    { id: 10, name: 'Pasta', price: 1.60, quantity: 3 },
+  ];
 
-      this.render();
-  }
+  const [items, setItems] = useState(initialItems);
+  const [newItem, setNewItem] = useState({ name: '', price: '', quantity: '' });
 
-  connectedCallback() {
-      this.renderProducts();
-      this.shadowRoot.querySelector('#search-bar').addEventListener('input', (e) => this.handleSearch(e));
-  }
+  const calculateTotal = () => {
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
-  handleSearch(event) {
-      this.searchTerm = event.target.value.toLowerCase();
-      this.renderProducts();
-  }
+  const handleAddItem = () => {
+    const { name, price, quantity } = newItem;
+    if (name && price && quantity) {
+      const newItemObj = {
+        id: items.length + 1, 
+        name,
+        price: parseFloat(price),
+        quantity: parseInt(quantity, 10),
+      };
+      setItems([...items, newItemObj]);
+      setNewItem({ name: '', price: '', quantity: '' }); 
+    }
+  };
 
-  handleRemove(id) {
-      const index = this.products.findIndex(product => product.id === id);
-      if (index !== -1) {
-          this.products.splice(index, 1);
-          this.renderProducts();
-      }
-  }
+  const handleRemoveItem = (id) => {
+    setItems(items.filter(item => item.id !== id));
+  };
 
-  handleQuantityChange(id, quantity) {
-      const product = this.products.find(product => product.id === id);
-      if (product) {
-          product.quantity = Math.max(1, parseInt(quantity, 10) || 1);
-          this.renderProducts();
-      }
-  }
+  const handleQuantityChange = (id, change) => {
+    setItems(items.map(item =>
+      item.id === id ? { ...item, quantity: Math.max(0, item.quantity + change) } : item
+    ));
+  };
 
-  renderProducts() {
-      const productList = this.shadowRoot.getElementById('product-list');
-      productList.innerHTML = '';
+  return (
+    <div className="cart-container">
+      <header className="cart-header">Shopping Cart</header>
 
-      const filteredProducts = this.products.filter(product =>
-          product.name.toLowerCase().includes(this.searchTerm)
-      );
+      <input
+        type="text"
+        className="search-bar"
+        placeholder="Search products..."
+      />
 
-      const grandTotal = filteredProducts.reduce((total, product) =>
-          total + (product.price * product.quantity), 0
-      );
-
-      filteredProducts.forEach(product => {
-          const row = document.createElement('tr');
-          row.className = 'product-row';
-
-          row.innerHTML = `
-              <td class="product-cell">${product.name}</td>
-              <td class="product-cell">${product.available ? 'In Stock' : 'Out of Stock'}</td>
-              <td class="product-cell">$${product.price.toFixed(2)}</td>
-              <td class="product-cell">
-                  <input type="number" min="1" value="${product.quantity}" class="quantity-input" data-id="${product.id}">
+      <table className="product-table">
+        <thead className="product-table-header">
+          <tr>
+            <th className="header-item">Product</th>
+            <th className="header-item">Price</th>
+            <th className="header-item">Quantity</th>
+            <th className="header-item">Total</th>
+            <th className="header-item">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.id} className="product-row">
+              <td className="product-cell">{item.name}</td>
+              <td className="product-cell">${item.price.toFixed(2)}</td>
+              <td className="product-cell">
+                <div className="quantity-container">
+                  <button
+                    className="quantity-button"
+                    onClick={() => handleQuantityChange(item.id, -1)}
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    className="quantity-input"
+                    value={item.quantity}
+                    readOnly
+                  />
+                  <button
+                    className="quantity-button"
+                    onClick={() => handleQuantityChange(item.id, 1)}
+                  >
+                    +
+                  </button>
+                </div>
               </td>
-              <td class="product-cell">$${(product.price * product.quantity).toFixed(2)}</td>
-              <td class="product-cell">
-                  <button class="remove-button" data-id="${product.id}">Remove</button>
+              <td className="product-cell">${(item.price * item.quantity).toFixed(2)}</td>
+              <td className="product-cell">
+                <button
+                  className="remove-button"
+                  onClick={() => handleRemoveItem(item.id)}
+                >
+                  Remove
+                </button>
               </td>
-          `;
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-          productList.appendChild(row);
-      });
+      <div className="grand-total">
+        <span>Total:</span>
+        <span>${calculateTotal().toFixed(2)}</span>
+      </div>
+    </div>
+  );
+};
 
-      this.shadowRoot.getElementById('grand-total').textContent = `$${grandTotal.toFixed(2)}`;
-
-      this.shadowRoot.querySelectorAll('.remove-button').forEach(button => {
-          button.addEventListener('click', event => {
-              this.handleRemove(parseInt(event.target.getAttribute('data-id')));
-          });
-      });
-
-      this.shadowRoot.querySelectorAll('.quantity-input').forEach(input => {
-          input.addEventListener('input', event => {
-              this.handleQuantityChange(parseInt(event.target.getAttribute('data-id')), event.target.value);
-          });
-      });
-  }
-
-  render() {
-      this.shadowRoot.innerHTML = `
-          <style>
-              /* Your CSS here */
-          </style>
-          <div class="cart-container">
-              <header class="cart-header">Cart Items</header>
-              <input type="text" id="search-bar" placeholder="Search for products..." class="search-bar">
-              <table class="product-table">
-                  <thead class="product-table-header">
-                      <tr>
-                          <th class="header-item">Product</th>
-                          <th class="header-item">Availability</th>
-                          <th class="header-item">Unit Price</th>
-                          <th class="header-item">Quantity</th>
-                          <th class="header-item">Total</th>
-                          <th class="header-item">Action</th>
-                      </tr>
-                  </thead>
-                  <tbody id="product-list"></tbody>
-              </table>
-              <div class="grand-total">
-                  <span>Total:</span>
-                  <span id="grand-total">$0.00</span>
-              </div>
-          </div>
-      `;
-  }
-}
-
-customElements.define('cart-component', CartComponent);
+export default Cart;
