@@ -1,0 +1,50 @@
+{
+    "sections": [
+      {
+        "name": "Women",
+        "categories": [
+          {
+            "name": "Accessories",
+            "items": [
+              { "id": 1, "name": "Earrings", "price": 15.99 },
+              { "id": 2, "name": "Necklace", "price": 25.99 }
+            ]
+          },
+          {
+            "name": "Clothes",
+            "items": [
+              { "id": 3, "name": "Dress", "price": 45.99 },
+              { "id": 4, "name": "Jeans", "price": 39.99 }
+            ]
+          },
+          {
+            "name": "Bags",
+            "items": [
+              { "id": 5, "name": "Handbag", "price": 55.99 },
+              { "id": 6, "name": "Backpack", "price": 65.99 }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Men",
+        "categories": [
+          {
+            "name": "Shoes",
+            "items": [
+              { "id": 7, "name": "Sneakers", "price": 75.99 },
+              { "id": 8, "name": "Boots", "price": 85.99 }
+            ]
+          },
+          {
+            "name": "Clothes",
+            "items": [
+              { "id": 9, "name": "Shirt", "price": 25.99 },
+              { "id": 10, "name": "Trousers", "price": 49.99 }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
