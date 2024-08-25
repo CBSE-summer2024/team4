@@ -1,6 +1,7 @@
 # Auth Microfrontend
 Overview
-The Auth Microfrontend is an authentication module designed as part of a micro frontend architecture using Angular. It provides user authentication features, including login and sign-up functionality, and is integrated using Webpack's Module Federation.
+The Auth Microfrontend is an authentication module designed as part of a micro frontend architecture using Angular.
+It provides user authentication features, including login and sign-up functionality, and is integrated using Webpack's Module Federation.
 
 Features
 Micro Frontend Architecture: Modular and scalable authentication system.
@@ -20,25 +21,21 @@ Follow the steps below to set up and run the project locally.
 Clone the repository to your local machine:
 
 bash
-نسخ الكود
 git clone https://github.com/your-username/auth-microfrontend.git
 cd auth-microfrontend
 2. Install Dependencies
 Install the required dependencies:
 
 bash
-نسخ الكود
 npm install
 Or, if you are using Yarn:
 
 bash
-نسخ الكود
 yarn install
 3. Set Up Webpack Module Federation
 Make sure Webpack Module Federation is set up by installing the necessary packages:
 
 bash
-نسخ الكود
 ng add @angular-architects/module-federation
 If you encounter a validation error regarding the port, make sure your angular.json is configured correctly.
 
@@ -53,8 +50,7 @@ Navigate to http://localhost:4200/ in your browser to see the login and sign-up 
 Project Structure
 The project structure follows a modular approach:
 
-arduino
-نسخ الكود
+# Structure : 
 src/
 ├── app/
 │   ├── auth/
@@ -77,8 +73,6 @@ Configuration
 Webpack Configuration
 The webpack.config.js is set up to enable Module Federation. Ensure the following configurations are in place:
 
-javascript
-نسخ الكود
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
@@ -106,7 +100,7 @@ module.exports = {
     outputModule: true
   },
   plugins: [
-    new ModuleFederationPlugin({
+   new ModuleFederationPlugin({
         library: { type: "module" },
         // Configure remotes or exposes as needed
         shared: share({
