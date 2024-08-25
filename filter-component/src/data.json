@@ -1,50 +1,250 @@
 {
-    "sections": [
-      {
-        "name": "Women",
-        "categories": [
-          {
-            "name": "Accessories",
-            "items": [
-              { "id": 1, "name": "Earrings", "price": 15.99 },
-              { "id": 2, "name": "Necklace", "price": 25.99 }
-            ]
-          },
-          {
-            "name": "Clothes",
-            "items": [
-              { "id": 3, "name": "Dress", "price": 45.99 },
-              { "id": 4, "name": "Jeans", "price": 39.99 }
-            ]
-          },
-          {
-            "name": "Bags",
-            "items": [
-              { "id": 5, "name": "Handbag", "price": 55.99 },
-              { "id": 6, "name": "Backpack", "price": 65.99 }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Men",
-        "categories": [
-          {
-            "name": "Shoes",
-            "items": [
-              { "id": 7, "name": "Sneakers", "price": 75.99 },
-              { "id": 8, "name": "Boots", "price": 85.99 }
-            ]
-          },
-          {
-            "name": "Clothes",
-            "items": [
-              { "id": 9, "name": "Shirt", "price": 25.99 },
-              { "id": 10, "name": "Trousers", "price": 49.99 }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-  
+  "sections": [
+    {
+      "name": "Women",
+      "categories": [
+        {
+          "name": "Accessories",
+          "items": [
+            { "id": 1, "name": "Earrings", "price": 15.99 },
+            { "id": 2, "name": "Necklace", "price": 25.99 },
+            { "id": 3, "name": "Bracelet", "price": 19.99 },
+            { "id": 4, "name": "Scarf", "price": 12.99 }
+          ]
+        },
+        {
+          "name": "Clothes",
+          "items": [
+            { "id": 5, "name": "Dress", "price": 45.99 },
+            { "id": 6, "name": "Jeans", "price": 39.99 },
+            { "id": 7, "name": "Blouse", "price": 29.99 },
+            { "id": 8, "name": "Skirt", "price": 34.99 }
+          ]
+        },
+        {
+          "name": "Bags",
+          "items": [
+            { "id": 9, "name": "Handbag", "price": 55.99 },
+            { "id": 10, "name": "Backpack", "price": 65.99 },
+            { "id": 11, "name": "Clutch", "price": 49.99 },
+            { "id": 12, "name": "Tote Bag", "price": 59.99 }
+          ]
+        },
+        {
+          "name": "Footwear",
+          "items": [
+            { "id": 13, "name": "Heels", "price": 75.99 },
+            { "id": 14, "name": "Flats", "price": 45.99 },
+            { "id": 15, "name": "Sandals", "price": 39.99 },
+            { "id": 16, "name": "Boots", "price": 89.99 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Men",
+      "categories": [
+        {
+          "name": "Shoes",
+          "items": [
+            { "id": 17, "name": "Sneakers", "price": 75.99 },
+            { "id": 18, "name": "Boots", "price": 85.99 },
+            { "id": 19, "name": "Loafers", "price": 65.99 },
+            { "id": 20, "name": "Sandals", "price": 35.99 }
+          ]
+        },
+        {
+          "name": "Clothes",
+          "items": [
+            { "id": 21, "name": "Shirt", "price": 25.99 },
+            { "id": 22, "name": "Trousers", "price": 49.99 },
+            { "id": 23, "name": "Jacket", "price": 89.99 },
+            { "id": 24, "name": "Sweater", "price": 55.99 }
+          ]
+        },
+        {
+          "name": "Accessories",
+          "items": [
+            { "id": 25, "name": "Watch", "price": 199.99 },
+            { "id": 26, "name": "Belt", "price": 29.99 },
+            { "id": 27, "name": "Tie", "price": 19.99 },
+            { "id": 28, "name": "Sunglasses", "price": 89.99 }
+          ]
+        },
+        {
+          "name": "Bags",
+          "items": [
+            { "id": 29, "name": "Briefcase", "price": 119.99 },
+            { "id": 30, "name": "Messenger Bag", "price": 89.99 },
+            { "id": 31, "name": "Duffle Bag", "price": 99.99 },
+            { "id": 32, "name": "Backpack", "price": 79.99 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kids",
+      "categories": [
+        {
+          "name": "Toys",
+          "items": [
+            { "id": 33, "name": "Stuffed Animal", "price": 14.99 },
+            { "id": 34, "name": "Puzzle", "price": 9.99 },
+            { "id": 35, "name": "Building Blocks", "price": 24.99 },
+            { "id": 36, "name": "Action Figure", "price": 19.99 }
+          ]
+        },
+        {
+          "name": "Clothes",
+          "items": [
+            { "id": 37, "name": "T-Shirt", "price": 15.99 },
+            { "id": 38, "name": "Shorts", "price": 19.99 },
+            { "id": 39, "name": "Sweatshirt", "price": 29.99 },
+            { "id": 40, "name": "Jeans", "price": 25.99 }
+          ]
+        },
+        {
+          "name": "Shoes",
+          "items": [
+            { "id": 41, "name": "Sneakers", "price": 29.99 },
+            { "id": 42, "name": "Boots", "price": 39.99 },
+            { "id": 43, "name": "Sandals", "price": 19.99 },
+            { "id": 44, "name": "Slippers", "price": 9.99 }
+          ]
+        },
+        {
+          "name": "Accessories",
+          "items": [
+            { "id": 45, "name": "Hat", "price": 12.99 },
+            { "id": 46, "name": "Gloves", "price": 8.99 },
+            { "id": 47, "name": "Scarf", "price": 10.99 },
+            { "id": 48, "name": "Sunglasses", "price": 14.99 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Electronics",
+      "categories": [
+        {
+          "name": "Mobile Phones",
+          "items": [
+            { "id": 49, "name": "Smartphone", "price": 699.99 },
+            { "id": 50, "name": "Feature Phone", "price": 49.99 },
+            { "id": 51, "name": "Smartwatch", "price": 199.99 },
+            { "id": 52, "name": "Tablet", "price": 399.99 }
+          ]
+        },
+        {
+          "name": "Laptops",
+          "items": [
+            { "id": 53, "name": "Gaming Laptop", "price": 1299.99 },
+            { "id": 54, "name": "Ultrabook", "price": 999.99 },
+            { "id": 55, "name": "2-in-1 Laptop", "price": 799.99 },
+            { "id": 56, "name": "Notebook", "price": 599.99 }
+          ]
+        },
+        {
+          "name": "Accessories",
+          "items": [
+            { "id": 57, "name": "Headphones", "price": 149.99 },
+            { "id": 58, "name": "Mouse", "price": 29.99 },
+            { "id": 59, "name": "Keyboard", "price": 49.99 },
+            { "id": 60, "name": "Charger", "price": 19.99 }
+          ]
+        },
+        {
+          "name": "Cameras",
+          "items": [
+            { "id": 61, "name": "DSLR Camera", "price": 899.99 },
+            { "id": 62, "name": "Mirrorless Camera", "price": 1099.99 },
+            { "id": 63, "name": "Action Camera", "price": 299.99 },
+            { "id": 64, "name": "Camcorder", "price": 399.99 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Home & Kitchen",
+      "categories": [
+        {
+          "name": "Furniture",
+          "items": [
+            { "id": 65, "name": "Sofa", "price": 499.99 },
+            { "id": 66, "name": "Dining Table", "price": 299.99 },
+            { "id": 67, "name": "Bed", "price": 599.99 },
+            { "id": 68, "name": "Chair", "price": 79.99 }
+          ]
+        },
+        {
+          "name": "Appliances",
+          "items": [
+            { "id": 69, "name": "Refrigerator", "price": 899.99 },
+            { "id": 70, "name": "Washing Machine", "price": 499.99 },
+            { "id": 71, "name": "Microwave", "price": 99.99 },
+            { "id": 72, "name": "Vacuum Cleaner", "price": 149.99 }
+          ]
+        },
+        {
+          "name": "Kitchenware",
+          "items": [
+            { "id": 73, "name": "Cookware Set", "price": 149.99 },
+            { "id": 74, "name": "Knife Set", "price": 79.99 },
+            { "id": 75, "name": "Blender", "price": 59.99 },
+            { "id": 76, "name": "Toaster", "price": 29.99 }
+          ]
+        },
+        {
+          "name": "Decor",
+          "items": [
+            { "id": 77, "name": "Wall Art", "price": 49.99 },
+            { "id": 78, "name": "Vase", "price": 29.99 },
+            { "id": 79, "name": "Rug", "price": 89.99 },
+            { "id": 80, "name": "Curtains", "price": 39.99 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sports & Outdoors",
+      "categories": [
+        {
+          "name": "Fitness Equipment",
+          "items": [
+            { "id": 81, "name": "Treadmill", "price": 799.99 },
+            { "id": 82, "name": "Dumbbells", "price": 49.99 },
+            { "id": 83, "name": "Yoga Mat", "price": 29.99 },
+            { "id": 84, "name": "Exercise Bike", "price": 299.99 }
+          ]
+        },
+        {
+          "name": "Outdoor Gear",
+          "items": [
+            { "id": 85, "name": "Tent", "price": 199.99 },
+            { "id": 86, "name": "Sleeping Bag", "price": 79.99 },
+            { "id": 87, "name": "Camping Stove", "price": 49.99 },
+            { "id": 88, "name": "Hiking Boots", "price": 129.99 }
+          ]
+        },
+        {
+          "name": "Sports Apparel",
+          "items": [
+            { "id": 89, "name": "Running Shoes", "price": 89.99 },
+            { "id": 90, "name": "Tracksuit", "price": 79.99 },
+            { "id": 91, "name": "Sports Bra", "price": 39.99 },
+            { "id": 92, "name": "Compression Shorts", "price": 29.99 }
+          ]
+        },
+        {
+          "name": "Cycling",
+          "items": [
+            { "id": 93, "name": "Mountain Bike", "price": 499.99 },
+            { "id": 94, "name": "Helmet", "price": 59.99 },
+            { "id": 95, "name": "Bike Lights", "price": 19.99 },
+            { "id": 96, "name": "Cycling Gloves", "price": 24.99 }
+          ]
+        }
+      ]
+    }
+  ]
+}
