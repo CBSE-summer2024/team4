@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import FilterComponent from './components/FilterComponent.vue'
 
-createApp(App).mount('#app')
+// Create and mount the Vue application
+createApp(FilterComponent).mount('#app')
