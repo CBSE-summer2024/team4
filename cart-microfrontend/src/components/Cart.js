@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
-import './cart.css'; 
+import React, { useState, useEffect } from 'react';
+import './cart.css';
 
 const Cart = () => {
-  const initialItems = [
-    { id: 1, name: 'Apple', price: 1.20, quantity: 3 },
-    { id: 2, name: 'Banana', price: 0.50, quantity: 5 },
-    { id: 3, name: 'Orange', price: 0.80, quantity: 2 },
-    { id: 4, name: 'Milk', price: 2.50, quantity: 1 },
-    { id: 5, name: 'Bread', price: 1.00, quantity: 2 },
-    { id: 6, name: 'Cheese', price: 3.00, quantity: 1 },
-    { id: 7, name: 'Eggs', price: 2.00, quantity: 12 },
-    { id: 8, name: 'Chicken Breast', price: 5.00, quantity: 1 },
-    { id: 9, name: 'Rice', price: 1.75, quantity: 4 },
-    { id: 10, name: 'Pasta', price: 1.60, quantity: 3 },
-  ];
-
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState({ name: '', price: '', quantity: '' });
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products'); // Fake API endpoint
+        const data = await response.json();
+        const formattedData = data.map(item => ({
+          id: item.id,
+          name: item.title,
+          price: item.price,
+          quantity: 1,
+        }));
+        setItems(formattedData);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    };
+
+    fetchItems();
+  }, []);
 
   const calculateTotal = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -26,13 +33,13 @@ const Cart = () => {
     const { name, price, quantity } = newItem;
     if (name && price && quantity) {
       const newItemObj = {
-        id: items.length + 1, 
+        id: items.length + 1,
         name,
         price: parseFloat(price),
         quantity: parseInt(quantity, 10),
       };
       setItems([...items, newItemObj]);
-      setNewItem({ name: '', price: '', quantity: '' }); 
+      setNewItem({ name: '', price: '', quantity: '' });
     }
   };
 
