@@ -1,20 +1,19 @@
-const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const { VueLoaderPlugin } = require('vue-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    filename: 'vue-app-bundle.js',
+    publicPath: 'auto',
   },
   module: {
     rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
+      { test: /\.vue$/, loader: 'vue-loader' },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -22,21 +21,38 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      vue$: 'vue/dist/vue.runtime.esm-bundler.js', // Use the runtime-only build
+      vue$: 'vue/dist/vue.runtime.esm-bundler.js',
     },
   },
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html', // Path to your HTML file
-      filename: 'index.html', // Output file name
+      template: './src/index.html',
+      filename: 'index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new ModuleFederationPlugin({
+      name: 'filterApp',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './FilterComponent': './src/components/FilterComponent.vue',
+      },
+      shared: {
+        vue: {
+          singleton: true,
+          eager: true,
+          requiredVersion: '^3.4.38',
+        },
+      },
     }),
   ],
   devServer: {
@@ -45,6 +61,12 @@ module.exports = {
     },
     compress: true,
     port: 3002,
-    historyApiFallback: true, // Handle SPA routing
+    historyApiFallback: true,
+    
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
+  devtool: 'source-map', 
+  
 };

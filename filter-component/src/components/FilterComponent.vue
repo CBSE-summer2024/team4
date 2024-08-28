@@ -1,9 +1,6 @@
 <template>
   <div class="filter-container">
-
-    <!-- Sidebar for Sections and Categories -->
     <aside class="filter-sidebar">
-      <!-- Section List with Categories Toggle -->
       <div 
         class="filter-section" 
         v-for="section in sections" 
@@ -27,7 +24,6 @@
       </div>
     </aside>
 
-    <!-- Main Content for Items -->
     <section class="filter-main-content">
       <div v-if="selectedCategory">
         <h2>{{ selectedCategory.name }} Items</h2>
@@ -42,7 +38,6 @@
         </ul>
       </div>
 
-      <!-- No Categories Available -->
       <div v-else-if="activeSection && !filteredCategories.length">
         <p>No categories available for the selected section.</p>
       </div>
@@ -58,7 +53,7 @@ export default {
   data() {
     return {
       sections: data.sections,
-      activeSection: null, // Track the currently active section
+      activeSection: null, 
       selectedCategory: null
     };
   },
@@ -71,7 +66,7 @@ export default {
   methods: {
     toggleSection(sectionName) {
       this.activeSection = this.activeSection === sectionName ? null : sectionName;
-      this.selectedCategory = null; // Reset the selected category when toggling sections
+      this.selectedCategory = null; 
     },
     selectCategory(category) {
       this.selectedCategory = category;
