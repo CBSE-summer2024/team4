@@ -1,11 +1,41 @@
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const path = require("path");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
 
-module.exports = merge(common, {
+// Define the common configuration
+const commonConfig = {
+  entry: './src/main.ts',
   output: {
-    publicPath: "auto",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    libraryTarget: 'var',
+    library: 'authMicrofrontend',
+    publicPath: "auto", // Set publicPath here
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+    alias: {
+      '@angular/core': path.resolve(__dirname, 'node_modules/@angular/core'),
+      '@angular/common': path.resolve(__dirname, 'node_modules/@angular/common'),
+      '@angular/router': path.resolve(__dirname, 'node_modules/@angular/router'),
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.html$/,
+        use: 'html-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -21,11 +51,6 @@ module.exports = merge(common, {
       },
     }),
   ],
-  resolve: {
-    alias: {
-      '@angular/core': path.resolve(__dirname, 'node_modules/@angular/core'),
-      '@angular/common': path.resolve(__dirname, 'node_modules/@angular/common'),
-      '@angular/router': path.resolve(__dirname, 'node_modules/@angular/router'),
-    }
-  }
-});
+};
+
+module.exports = commonConfig;
