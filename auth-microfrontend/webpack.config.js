@@ -1,17 +1,81 @@
-const path = require("path");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const { merge } = require("webpack-merge");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+const { ModuleFederationPlugin } = webpack.container;
 
-// Define the common configuration
-const commonConfig = {
+module.exports = {
   entry: './src/main.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    libraryTarget: 'var',
-    library: 'authMicrofrontend',
-    publicPath: "auto", // Set publicPath here
+    filename: 'Auth-bundle.js',
+    publicPath: 'auto', 
   },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    compress: true,
+    port: 3005,
+    historyApiFallback: true,
+    hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.html$/,
+        use: 'html-loader',
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new ModuleFederationPlugin({
+      name: 'authMicrofrontend',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './AuthModule': './src/app/auth/auth.module.ts',
+      },
+      shared: {
+        '@angular/core': { singleton: true ,eager: true},
+        '@angular/common': { singleton: true,eager: true },
+        '@angular/router': { singleton: true,eager: true },
+      },
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.PUBLIC_URL': JSON.stringify(''),
+    }),
+  ],
   resolve: {
     extensions: ['.ts', '.js'],
     alias: {
@@ -20,37 +84,5 @@ const commonConfig = {
       '@angular/router': path.resolve(__dirname, 'node_modules/@angular/router'),
     }
   },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.html$/,
-        use: 'html-loader'
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
-  },
-  plugins: [
-    new ModuleFederationPlugin({
-      name: "authMicrofrontend",
-      filename: "remoteEntry.js",
-      exposes: {
-        './AuthModule': './src/app/auth/auth.module.ts',
-      },
-      shared: {
-        "@angular/core": { singleton: true },
-        "@angular/common": { singleton: true },
-        "@angular/router": { singleton: true },
-      },
-    }),
-  ],
+  devtool: 'source-map', 
 };
-
-module.exports = commonConfig;
