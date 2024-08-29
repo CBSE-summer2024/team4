@@ -6,18 +6,20 @@ const common = require("./webpack.common.js");
 module.exports = merge(common, {
   output: {
     publicPath: "auto",
+    uniqueName: "authMicrofrontend", // Ensures unique module name
   },
   plugins: [
     new ModuleFederationPlugin({
       name: "authMicrofrontend",
       filename: "remoteEntry.js",
       exposes: {
-        './AuthModule': './src/app/auth/auth.module.ts',
+        // Expose a specific component instead of the module
+        './AuthComponent': './src/app/auth/auth.component.ts',
       },
       shared: {
-        "@angular/core": { singleton: true },
-        "@angular/common": { singleton: true },
-        "@angular/router": { singleton: true },
+        "@angular/core": { singleton: true, strictVersion: true },
+        "@angular/common": { singleton: true, strictVersion: true },
+        "@angular/router": { singleton: true, strictVersion: true },
       },
     }),
   ],
