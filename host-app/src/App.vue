@@ -27,7 +27,6 @@ export default {
   text-align: center;
   padding: 20px;
   background-color: rgb(49, 48, 48);
-  color: #fff;
   font-family: Arial, sans-serif;
 }
 
