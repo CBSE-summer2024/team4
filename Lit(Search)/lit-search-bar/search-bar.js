@@ -119,5 +119,6 @@ export class SearchBar extends LitElement {
     `;
   }
 }
+console.log('search-bar.js is loaded');
 
 customElements.define('search-bar', SearchBar);
