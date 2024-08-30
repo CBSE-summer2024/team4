@@ -1,14 +1,9 @@
-import { createApp, defineAsyncComponent } from 'vue';
+// src/main.js
+import { createApp } from 'vue';
 import App from './App.vue';
-
+import router from './router';
 
 const app = createApp(App);
 
-// Import remote components dynamically
-const CartComponent = defineAsyncComponent(() => import('Cart/Cart'));
-const FilterComponent = defineAsyncComponent(() => import('filterApp/FilterComponent'));
-
-app.component('CartComponent', CartComponent);
-app.component('FilterComponent', FilterComponent);
-
+app.use(router);
 app.mount('#app');
