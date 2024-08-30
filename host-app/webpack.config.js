@@ -1,3 +1,4 @@
+// Webpack configuration for hostApp
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -47,11 +48,16 @@ module.exports = {
       remotes: {
         Cart: 'Cart@http://localhost:3003/remoteEntry.js',
         filterApp: 'filterApp@http://localhost:3002/remoteEntry.js',
+        searchApp: 'searchBarApp@http://localhost:3004/litremoteEntry.js',
+        svelteApp: 'svelteApp@http://localhost:3005/remoteEntry.js',
+        
       },
       shared: {
         vue: { singleton: true, eager: true, requiredVersion: '^3.4.38' },
         react: { singleton: true, eager: true, requiredVersion: '^18.0.0' },
         'react-dom': { singleton: true, eager: true, requiredVersion: '^18.0.0' },
+        'lit': { singleton: true, strictVersion: true, eager: true, },
+        svelte: { singleton: true, eager: true, requiredVersion: '^3.59.2' },
       },
     }),
     new HtmlWebpackPlugin({
@@ -60,7 +66,7 @@ module.exports = {
     new VueLoaderPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.vue', '.json'],
+    extensions: ['.js', '.jsx', '.vue', '.json', '.svelte'],
     alias: {
       vue$: 'vue/dist/vue.runtime.esm-bundler.js',
     },
