@@ -12,7 +12,7 @@ export default {
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: 'auto',
   },
   module: {
     rules: [
@@ -56,7 +56,7 @@ export default {
       directory: path.join(__dirname, 'public'),
     },
     compress: true,
-    port: 3000,
+    port: 3005,
     historyApiFallback: true,
   },
 };
