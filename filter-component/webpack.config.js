@@ -18,6 +18,14 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        options: {
+          presets: [
+            ['@babel/preset-env', {
+              targets: '> 0.25%, not dead',
+            }],
+          ],
+          plugins: ['@babel/plugin-transform-runtime'],
+        },
       },
       {
         test: /\.css$/,
@@ -62,11 +70,9 @@ module.exports = {
     compress: true,
     port: 3002,
     historyApiFallback: true,
-    
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
   },
   devtool: 'source-map', 
-  
 };
