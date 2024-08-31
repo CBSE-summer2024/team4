@@ -229,3 +229,10 @@ module.exports = {
 ```Lit Search: http://localhost:3004```
 ```Svelte Auth: http://localhost:3005```
 ### Access the host application on http://localhost:3001 to see the integrated micro frontends in action.
+
+
+## High Level Design Architecture For Microfrontend Mart PS  :
+
+
+![mart](https://github.com/user-attachments/assets/dcde6d9b-f9de-4bb3-8a3b-a237f277dc0e)
+
