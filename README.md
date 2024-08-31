@@ -2,6 +2,8 @@
 
 ### You can view test cases via this link :  [Gerkhin Test Cases For Mart Ps](https://docs.google.com/document/d/1rSU8LBtgQNtG43xK3oNaJX3DHfF4xexsDYIpK83tEtU/edit?usp=sharing)
 
+[Screen Recording](https://youtu.be/dDNqFKgK-ro)
+
 # Project Overview
 This documentation describes the setup and integration of a horizontal microfrontend architecture using the following technologies:
 React: Cart component
