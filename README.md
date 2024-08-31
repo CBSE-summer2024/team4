@@ -2,7 +2,7 @@
 
 ### You can view test cases via this link :  [Gerkhin Test Cases For Mart Ps](https://docs.google.com/document/d/1rSU8LBtgQNtG43xK3oNaJX3DHfF4xexsDYIpK83tEtU/edit?usp=sharing)
 
-## 1.Project Overview
+# Project Overview
 This documentation describes the setup and integration of a horizontal microfrontend architecture using the following technologies:
 React: Cart component
 Vue.js: Filter component
@@ -11,12 +11,12 @@ Svelte: Authentication system (Sign Up, Sign In)
 The micro frontends are integrated using Module Federation and Webpack, allowing each component to run independently while being seamlessly combined into a single application.
 Project Structure
 ```
-/root-directory
+/TEAM4
     /host-app
-    /react-cart
-    /vue-filter
-    /lit-search
-    /svelte-auth
+    /cart-microfronend
+    /filter-component
+    /lit-search-bar
+    /svelte-microfrontend
 ```
 #### host-app: The main application that loads and orchestrates the microfrontends.
 #### react-cart: The microfrontend for the Cart, built using React.
@@ -26,7 +26,7 @@ Project Structure
 
 
 
-## Integration Approach
+# Integration Approach
 ### 1. Setting Up Webpack Module Federation
 Module Federation is a Webpack feature that allows you to share and dynamically load code (modules) from different applications (referred to as remotes) into a host application. Each remote application exposes its components so that the host can use them as if they were part of its codebase.
 
@@ -111,14 +111,14 @@ methods: {
 # Prerequisites
 Ensure you have Node.js and npm installed on your machine.
 Setup Instructions
-1. Host Application Setup
-Navigate to the host-app directory:
+## 1. Host Application Setup
+### Navigate to the host-app directory:
 
 ```cd /root-directory/host-app```
 
 
 ### Initialize the project:
-```npm init -y```
+```npm init```
 
 ### Install Webpack Dev Server:
 
@@ -132,7 +132,7 @@ Navigate to the host-app directory:
 
 
 ### Initialize the project:
-```npm init -y```
+```npm init```
 
 
 ### Install Webpack Dev Server:
@@ -149,7 +149,7 @@ Navigate to the host-app directory:
 
 
 ### Initialize the project:
-```npm init -y```
+```npm init```
 
 
 ### Install Webpack Dev Server:
@@ -166,11 +166,14 @@ Navigate to the host-app directory:
 
 
 ### Initialize the project:
-```npm init -y```
+```npm init```
 
 
 ### Install Webpack Dev Server:
 ```npm install --save-dev webpack-dev-server```
+
+### install Babel Loader:
+```npm install --save-dev babel-loader @babel/core @babel/preset-env```
 
 
 ### Run the application:
@@ -184,7 +187,7 @@ Navigate to the host-app directory:
 
 
 ### Initialize the project:
-```npm init -y```
+```npm init```
 
 
 ### Install Webpack Dev Server:
